@@ -16,7 +16,12 @@ const PORT = process.env.PORT || 8000;
 
 // Middleware
 app.use(helmet()); // Security headers
-app.use(cors()); // Enable CORS
+app.use(
+  cors({
+    origin: ["http://localhost:3000", "https://ediin-zasag.vercel.app"],
+    credentials: true,
+  })
+);
 app.use(morgan("combined")); // Logging
 app.use(express.json()); // Parse JSON bodies
 app.use(express.urlencoded({ extended: true })); // Parse URL-encoded bodies
